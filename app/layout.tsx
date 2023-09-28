@@ -1,8 +1,8 @@
 import './globals.css'
 import type { Metadata } from 'next'
-import { Inter } from 'next/font/google'
+import Container from './Components/Container/Container'
+import { ClerkProvider } from '@clerk/nextjs'
 
-const inter = Inter({ subsets: ['latin'] })
 
 export const metadata: Metadata = {
   title: 'Create Next App',
@@ -15,8 +15,21 @@ export default function RootLayout({
   children: React.ReactNode
 }) {
   return (
+    <ClerkProvider>
     <html lang="en">
-      <body className={inter.className}>{children}</body>
+      <head>
+      <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1"/>
+    <meta name='description' content='ملخص انمي,انمي جديد,انمي,بتاع انمي,ملخصات انمي,تلخيص انمي,انمي حب,افلام انمي,مسلسلات انمي,تلخيصات انمي,ملخص انمي كامل,افضل انمي,قصة انمي,ملخص فيلم انمي,انمي اكشن,انمي رومنسي,ملخصات انميات,انمي كامل,انميات اكشن,ملخص فلم انمي,انمي دراما,انمي مدرسي,انميات,انمي في السريع,ملخص انمي جديد,انمي ناروتو,مضحك انمي,انمي رومانسي,انمي هجوم العمالقة,حكاية انمي,ملخص الانمي,ملخصات الانمي,انمي ملك الشياطين,انمي قاتل الشياطين,تلخيص انميات,بليتش,انمي بليتش,ملخص انمي بليتش,تلخيص انمي بليتش,ملخصات انمي بليتش,بليتش الموسم الثاني,مانجا بليتش,انمي بليتش حرب الف عام,ملخص بليتش الجزء الثاني,ملخص انمي بليتش الجزء الثاني,بليتش يوها باخ,بليتش انمي,ملخص انمي بليتش الموسم الثاني,بليتش القادة,بليتش قائد فرقة 0,بليتش اقوى بانكاي,بليتش اقوى شينغامي,بليتش جميع البانكاي,بليتش ياماجي,بليتش بانكاي كيوراكو,بليتش بانكاي يماموتو,بليتش يماموتو,اقوى بانكايات في بليتش,بليتش زانبكاتو اتشيغو' />
+
+      </head>
+
+      <body >
+        <Container>
+        {children}
+        </Container>
+      
+        </body>
     </html>
+    </ClerkProvider>
   )
 }

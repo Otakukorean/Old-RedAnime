@@ -1,0 +1,88 @@
+"use client"
+import React, { useEffect, useState } from 'react'
+import {Container,VideoServersContainer,ServersButtonsContainer,ServerButton,VideoWatchContainer,NextPrevContainer,NextPrevButton,VidoeContainer} from './Style'
+import AnimeDetails from '@/app/Components/AnimeDetails'
+import axios from 'axios'
+import { useQuery } from '@tanstack/react-query'
+import Link from 'next/link'
+
+interface PageProps {
+  params : {epname : string , name : string}
+}
+
+
+const getEpisodeByname = async (name : string,animename : string) => {
+  const result = await axios.get(`/api/Episodes/GetByname?epname=${name}&animename=${animename}`)
+  return result.data
+}
+
+
+const page = ({params} : PageProps) => {
+  const [Server , SetServer] = useState({
+    id : 0 ,
+    ServerName : "" ,
+    ServerUrl : ""
+  })
+  const {data ,isLoading,refetch,isFetching}  = useQuery({queryFn:() =>  getEpisodeByname(params.epname , params.name)
+    ,queryKey :['episode']})
+
+   
+
+  useEffect(() => {
+    if(!isLoading && !isFetching) {
+      SetServer({
+        id : data?.episode?.Servers[0].id ,
+        ServerName : data?.episode?.Servers[0]?.ServerName ,
+        ServerUrl :data?.episode?.Servers[0]?.ServerUrl
+      })
+    }
+  },[isLoading , isFetching])
+  if(isFetching && isLoading) {
+    return <span>Loading ...</span>
+  }
+
+  
+  return (
+    <>
+    <title>{decodeURI(params.name) + ' ' + decodeURI(params.epname)}</title>
+    <meta property="og:url" content={`https://redanime.net/watch/${decodeURI(params.name)}/${decodeURI(params.epname)}`}/>
+    <Container>
+      <VideoServersContainer>
+        <ServersButtonsContainer>
+          {data?.episode?.Servers?.map((el : any) => (
+                   <ServerButton onClick={() => SetServer({id: el.id ,ServerName : el.ServerName ,ServerUrl:el.ServerUrl})} $isActive={el?.id == Server.id} >{el?.ServerName}</ServerButton>
+          ))}
+
+
+        </ServersButtonsContainer>
+      </VideoServersContainer>
+      <VideoWatchContainer>
+        <VidoeContainer>
+      <iframe width="960" height="720" src={Server.ServerUrl}  allowFullScreen={true} />
+     </VidoeContainer>
+      <NextPrevContainer>
+      {data?.NextEpisode ? (
+        <Link href={`/watch/${data?.episode?.anime?.title}/${data?.NextEpisode?.EpName}`}>
+              <NextPrevButton $isprev={false}>التالي</NextPrevButton>
+        </Link>
+      ) : null}
+      {
+        !data?.PrevEpisode  ? null : (
+          <Link href={`/watch/${data?.episode?.anime?.title}/${data?.PrevEpisode?.EpName}`}>
+          <NextPrevButton $isprev>السابق</NextPrevButton>
+      </Link>
+        )
+      }
+      
+
+      </NextPrevContainer>
+      </VideoWatchContainer>
+      
+    </Container>
+
+    <AnimeDetails epName={params.epname} name={data?.episode?.anime?.title}    /> 
+    </>
+  )
+}
+
+export default page

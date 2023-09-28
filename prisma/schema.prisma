@@ -1,0 +1,146 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "mysql"
+  url      = env("DATABASE_URL")
+}
+
+model Anime {
+  id            Int            @id @default(autoincrement())
+  title         String         @unique
+  secondtitle   String
+  type          AnimeType
+  description   String         @db.Text
+  createdAt     DateTime       @default(now())
+  updatedAt     DateTime       @updatedAt
+  imageUrl      String
+  backdropImage String
+  rating        Float
+  year          Int
+  status        String
+  airday        String
+  season        String
+  pin           Boolean        @default(false)
+  favoriteList  favoriteList[]
+  WatchLater    WatchLater[]
+  Notification  Notification[]
+  Subscripe     Subscripe[]
+  gener         Gener          @relation(fields: [generId], references: [id])
+  generId       Int
+  AnimeTags     AnimeTags[]
+  Episodes      Episodes[]
+}
+
+model Episodes {
+  id           Int            @id @default(autoincrement())
+  EpNumber     Int
+  EpName       String
+  anime        Anime          @relation(fields: [animeId], references: [id], onDelete: Cascade)
+  isNew        Boolean        @default(false)
+  pin          Boolean        @default(false)
+  islast       Boolean        @default(false)
+  isfirst      Boolean        @default(false)
+  animeId      Int
+  Servers      Servers[]
+  WatchHistory WatchHistory[]
+  createdAt    DateTime       @default(now())
+  updatedAt    DateTime       @updatedAt
+  Notification Notification[]
+}
+
+model Servers {
+  id         Int      @id @default(autoincrement())
+  ServerName String
+  ServerUrl  String
+  episode    Episodes @relation(fields: [epId], references: [id], onDelete: Cascade)
+  epId       Int
+  createdAt  DateTime @default(now())
+  updatedAt  DateTime @updatedAt
+}
+
+model favoriteList {
+  id        Int      @id @default(autoincrement())
+  userId    String
+  anime     Anime    @relation(fields: [animeId], references: [id], onDelete: Cascade)
+  animeId   Int
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+}
+
+model WatchLater {
+  id        Int      @id @default(autoincrement())
+  userId    String
+  anime     Anime    @relation(fields: [animeId], references: [id], onDelete: Cascade)
+  animeId   Int
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+}
+
+model WatchHistory {
+  id        Int      @id @default(autoincrement())
+  userId    String
+  episode   Episodes @relation(fields: [epId], references: [id], onDelete: Cascade)
+  epId      Int
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+}
+
+model Subscripe {
+  id        Int      @id @default(autoincrement())
+  userId    String
+  anime     Anime    @relation(fields: [animeId], references: [id], onDelete: Cascade)
+  animeId   Int
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+}
+
+model Notification {
+  id        Int      @id @default(autoincrement())
+  reciverId String
+  isread    Boolean  @default(false)
+  Anime     Anime?   @relation(fields: [animeId], references: [id], onDelete: Cascade)
+  animeId   Int?
+  episode   Episodes @relation(fields: [epId], references: [id], onDelete: Cascade)
+  epId      Int
+  createdAt DateTime @default(now())
+
+  updatedAt DateTime @updatedAt
+}
+
+model Gener {
+  id        Int      @id @default(autoincrement())
+  name      String   @unique
+  Anime     Anime[]
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+}
+
+model Tags {
+  id        Int         @id @default(autoincrement())
+  name      String      @unique
+  AnimeTags AnimeTags[]
+  createdAt DateTime    @default(now())
+  updatedAt DateTime    @updatedAt
+}
+
+model AnimeTags {
+  id        Int      @id @default(autoincrement())
+  tag       Tags     @relation(fields: [tagId], references: [id])
+  tagId     Int
+  anime     Anime    @relation(fields: [animeId], references: [id], onDelete: Cascade)
+  animeId   Int
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+}
+
+enum AnimeType {
+  TV
+  MOVIE
+  ONA
+  OVA
+}

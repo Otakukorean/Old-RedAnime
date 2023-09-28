@@ -9,12 +9,43 @@
     "lint": "next lint"
   },
   "dependencies": {
+    "@clerk/nextjs": "^4.23.2",
+    "@emotion/react": "^11.11.1",
+    "@emotion/server": "^11.11.0",
+    "@mantine/core": "^6.0.17",
+    "@mantine/dates": "^6.0.20",
+    "@mantine/form": "^6.0.19",
+    "@mantine/hooks": "^6.0.17",
+    "@mantine/modals": "^6.0.19",
+    "@mantine/next": "^6.0.17",
+    "@prisma/client": "^4.14.0",
+    "@tanstack/react-query": "^4.29.11",
     "@types/node": "20.4.2",
     "@types/react": "18.2.15",
     "@types/react-dom": "18.2.7",
-    "next": "13.4.10",
+    "axios": "^1.4.0",
+    "bcrypt": "^5.1.0",
+    "cloudinary": "^1.40.0",
+    "framer-motion": "^10.13.0",
+    "limiter": "^2.1.0",
+    "next": "13.4.2",
+    "next-cloudinary": "^4.20.0",
+    "prisma": "^4.14.0",
+    "prisma-extension-pagination": "^0.5.0",
+    "prisma-paginate": "^5.1.1",
     "react": "18.2.0",
     "react-dom": "18.2.0",
-    "typescript": "5.1.6"
+    "react-elastic-carousel": "^0.11.5",
+    "react-icons": "^4.10.1",
+    "react-intersection-observer": "^9.5.2",
+    "react-loading-skeleton": "^3.3.1",
+    "sass": "^1.66.1",
+    "styled-components": "^6.0.4",
+    "swiper": "^10.0.4",
+    "typescript": "5.1.6",
+    "zod": "^3.22.0"
+  },
+  "devDependencies": {
+    "@types/bcrypt": "^5.0.0"
   }
 }

@@ -1,0 +1,131 @@
+.Modal {
+     width: 100vw;
+    height: 100vh;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    position: fixed;
+    z-index:999999; 
+
+ 
+   
+}
+
+.Overlay{
+     width: 100vw;
+     height: 100vh;
+     top: 0;
+     left: 0;
+     right: 0;
+     bottom: 0;
+     position: fixed;
+     background: #000000bd;
+    }
+
+    .Content {
+     position: absolute;
+     top: 40%;
+     left: 50%;
+     transform: translate(-50%, -50%);
+     line-height: 1.4;
+ 
+     padding: 14px 28px;
+     border-radius: 3px;
+     max-width: 600px;
+     min-width: 300px;
+     .close-modal {
+          position: absolute;
+    top: 10px;
+    right: 10px;
+    padding: 5px 7px;
+     }
+     .Input {
+          direction: rtl;
+          background-color: #171c22;
+          border: 0;
+          border-radius: 2px;
+          border-top-right-radius: 0px;
+          border-bottom-right-radius: 0px;
+          font-size: 18px;
+          padding: 15px;
+          height: 3.75rem;
+          width: 25rem;
+          color:#fff;
+          @media (max-width: 768px) {
+             width: 19rem;
+          }
+          @media (max-width: 280px) {
+             width: 13rem;
+          }
+        
+          &:focus {
+             outline: none;
+          }
+          &::placeholder {
+               font-family: 'Cairo';
+             text-align: right;
+               color: #f7f7f7bd;
+          }
+    
+          
+     }
+    }
+
+    .SearchInputs {
+     margin-top: 105px;
+     display: flex;
+    
+}
+.SearchIcon {
+     width: 50px;
+     background-color: #171c22;
+     display: grid;
+     place-items: center;  
+   
+     svg {
+        font-size: 35px;
+     }
+}
+.DataResult {
+     margin-top: 0.5rem;
+     width: 100%;
+     height: 200px;
+     background-color: #171c22;
+     box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+     overflow: hidden;
+     overflow-y: auto;
+     color:#fff;
+     &::-webkit-scrollbar {
+        display: none;
+     }
+ .DataItem {
+     width: 100%;
+     height: 50px;
+     margin-bottom: 2rem;
+     display: flex;
+     align-items: center;
+     color: #fff;
+     cursor: pointer;
+     p {
+        margin-left: 10px;
+        color: #fff ;   
+         max-width: 350px;
+     }
+    
+     .ImageTitleContainer {
+          margin: 2rem 0 0 1rem;
+          display: flex;
+          align-items: center;
+          gap: 0.3rem;
+          
+          img {
+               border-radius: 5px;
+               object-fit: cover;
+               height: 100%;
+          }
+      
+      
+     }
+ }    
+}
