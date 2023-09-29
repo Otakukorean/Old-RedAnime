@@ -1,3 +1,4 @@
+import Link from "next/link";
 import styled from "styled-components";
 
 export const Header = styled.header`
@@ -24,12 +25,13 @@ export const Ul = styled.ul`
      padding-top:5px ;
 `
 
-export const Logo = styled.div`
+export const Logo = styled(Link)`
      img {
-          width: 75px;
-          height: 35px;
+          width: 80px;
+          height: 40px;
           object-fit: cover;
           border-radius: 17px 17px 17px 17px;
+          padding: 2px;
      }
 `
 

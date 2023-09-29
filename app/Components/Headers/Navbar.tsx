@@ -25,8 +25,8 @@ const Navbar = ({active , setActive} : PageProps) => {
                     <Ul>
                          <Items>
                          <LogoMenuContainer>
-                              <Logo>
-                                   <img src="/1116148-illustration-anime-logo-moustache-Death-Note-wing-sketch-horn-font.jpg" alt="" />
+                              <Logo href={'/'}>
+                                   <img src="/Logo.png" style={{objectFit:"cover"}} alt="" />
                               </Logo>
                               <AiOutlineMenu cursor={'pointer'} size={30} color='#fff' onClick={() => setActive(!active)} />
                          </LogoMenuContainer>
