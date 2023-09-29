@@ -54,7 +54,7 @@ const index = (props : PageProps) => {
   return (
      <Container>
   {
-            data?.result?.length && (
+       
               <>
                           <LinetitleContainer>
                    <Line></Line>
@@ -85,7 +85,7 @@ const index = (props : PageProps) => {
     
         </Swiper>
               </>
-            )
+            
           }
         
      

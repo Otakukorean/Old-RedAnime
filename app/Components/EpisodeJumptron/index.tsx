@@ -14,7 +14,7 @@ interface PageProps {
 }
 
   const getAll = async () => {
-    const result = await axios.get('/api/Episode/recent')
+    const result = await axios.get('/api/Episodes/recent')
 
     
     return result.data
@@ -55,7 +55,7 @@ const index = (props : PageProps) => {
 
               <>
               {
-               data?.result?.length && (
+            
                     <>
                     <LinetitleContainer>
                     <Line></Line>
@@ -84,7 +84,7 @@ const index = (props : PageProps) => {
      
          </Swiper>
          </>
-               )
+               
               }
 
               </>
