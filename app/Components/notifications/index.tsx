@@ -66,13 +66,14 @@ const index = () => {
                               )
                               
             }
+                  <span ref={ref}  style={{visibility:"hidden"}}>load more</span>
+
        
           </React.Fragment>
         ))
       } 
       
      
-      <span ref={ref}  style={{visibility:"hidden"}}>load more</span>
 
         </Flex>
           </Paper>

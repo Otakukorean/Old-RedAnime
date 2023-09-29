@@ -10,7 +10,9 @@ export async function GET(req : NextRequest , res : NextResponse){
      const xprisma = client.$extends(extension);
 
 
-
+    if(!user) {
+        return NextResponse.json('You Should Login!')
+    }
    
 
      // Gte Auth Users Post
