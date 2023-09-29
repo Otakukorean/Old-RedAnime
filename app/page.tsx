@@ -3,6 +3,8 @@
 import Hero from "./Components/HeroPage/Hero"
 import Animejumptron  from './Components/AnimeJumptron'
 import EpisodeJumptron from './Components/EpisodeJumptron'
+import LatestAnimeJumptron from './Components/LatestAnimeJumptron'
+import PinnedEpisodesJumprton from './Components/PinnedEpisodeJumptron'
 export default function Home() {
   return (
     <>
@@ -10,8 +12,8 @@ export default function Home() {
     <main>
         <Hero/>
         <Animejumptron url="/api/anime/getPinned" title="الانميات المثبتة" />
-        <EpisodeJumptron url="/api/Episodes/getPinned" title="الحلقات المثبتة"   />
-        <Animejumptron url="/api/anime/recent" title=" الانميات المضافة حديثا" />
+        <PinnedEpisodesJumprton url="/api/Episodes/getPinned" title="الحلقات المثبتة"   />
+        <LatestAnimeJumptron url="/api/anime/recent" title=" الانميات المضافة حديثا" />
         <EpisodeJumptron url="/api/Episodes/recent" title=" الحلقات المضافة حديثا"  />
     </main>
     </>
