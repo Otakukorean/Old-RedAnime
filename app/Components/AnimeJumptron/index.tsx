@@ -64,7 +64,7 @@ const index = (props : PageProps) => {
     
                 <React.Fragment>
                   {
-                      data?.result?.map((el : any,key : any) => (
+                      data?.result?.result?.map((el : any,key : any) => (
                         <SwiperSlide>
                           
                      
