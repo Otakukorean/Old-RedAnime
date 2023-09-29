@@ -9,18 +9,18 @@ import { useQuery } from '@tanstack/react-query';
 import axios from 'axios';
 
 interface PageProps {
-   url : string;
+ 
    title : string; 
 }
 
-  const getAll = async (url :string) => {
-    const result = await axios.get(url)
+  const getAll = async () => {
+    const result = await axios.get('/api/Episodes/getPinned')
 
     
     return result.data
   }
 const index = (props : PageProps) => {
-    const {data} = useQuery({queryFn :() => getAll(props.url),queryKey:['PinnedEpisodeJumptron']});
+    const {data} = useQuery({queryFn :() => getAll(),queryKey:['PinnedEpisodeJumptron']});
      const breakpoints = {
 
           320: {

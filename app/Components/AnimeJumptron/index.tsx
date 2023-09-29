@@ -9,19 +9,19 @@ import { useQuery } from '@tanstack/react-query';
 import axios from 'axios';
 
 interface PageProps {
-   url : string;
+
    title : string; 
-   isEpisode ?: boolean;
+
 }
 
-  const getAllRecent = async (url :string) => {
-    const result = await axios.get(url)
+  const getAllRecent = async () => {
+    const result = await axios.get('/api/anime/getPinned')
 
     
     return result.data
   }
 const index = (props : PageProps) => {
-    const {data} = useQuery({queryFn :() => getAllRecent(props.url)});
+    const {data} = useQuery({queryFn :() => getAllRecent()});
      const breakpoints = {
 
           320: {
@@ -53,10 +53,7 @@ const index = (props : PageProps) => {
         }
   return (
      <Container>
-      {
-        props.isEpisode ? (
-          <>
-          {
+  {
             data?.result?.length && (
               <>
                           <LinetitleContainer>
@@ -69,13 +66,11 @@ const index = (props : PageProps) => {
                   {
                       data?.result?.map((el : any,key : any) => (
                         <SwiperSlide>
-                          {
-                           !props.isEpisode ? (
+                          
+                     
                             <AnimeCard data={{title : el.title , imageUrl : el.imageUrl ,rating : el.rating , id : el.id ,type:el.type,status :el?.status,description : el?.description , season : el?.season,year : el?.year}} />
               
-                            ) : (
-                              <EpisodeCard animeId={el?.id} epNumber={el?.EpNumber} epname={el?.EpName} imageSrc={el?.anime?.imageUrl} showanimeName AnimeName={el?.anime?.title} />
-                            )}
+                           
                         </SwiperSlide>
                       ))
                       
@@ -92,45 +87,15 @@ const index = (props : PageProps) => {
               </>
             )
           }
-          </>
-        ) : (
-          <>
-             {
-        data?.result?.result?.length && (
-          <>
-                      <LinetitleContainer>
-               <Line></Line>
-               <Jumpitle> {props.title} </Jumpitle>
-          </LinetitleContainer>
-    <Swiper breakpoints={breakpoints} >
-
-            <React.Fragment>
-              {
-                  data?.result?.result?.map((el : any,key : any) => (
-                    <SwiperSlide>
-
-                     
-                        <AnimeCard data={{title : el.title , imageUrl : el.imageUrl ,rating : el.rating , id : el.id ,type:el.type,status :el?.status,description : el?.description , season : el?.season,year : el?.year}} />
-          
-                    </SwiperSlide>
-                  ))
-                  
-              }
-         
-            </React.Fragment>
+        
      
     
 
 
 
 
-    </Swiper>
-          </>
-        )
-      }
-          </>
-        )
-      }
+  
+      
 
      
 

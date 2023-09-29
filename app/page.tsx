@@ -11,10 +11,10 @@ export default function Home() {
     <title>RedAnime - لمشاهدة الانمي المترجم</title>
     <main>
         <Hero/>
-        <Animejumptron url="/api/anime/getPinned" title="الانميات المثبتة" />
-        <PinnedEpisodesJumprton url="/api/Episodes/getPinned" title="الحلقات المثبتة"   />
-        <LatestAnimeJumptron url="/api/anime/recent" title=" الانميات المضافة حديثا" />
-        <EpisodeJumptron url="/api/Episodes/recent" title=" الحلقات المضافة حديثا"  />
+        <Animejumptron  title="الانميات المثبتة" />
+        <PinnedEpisodesJumprton  title="الحلقات المثبتة"   />
+        <LatestAnimeJumptron  title=" الانميات المضافة حديثا" />
+        <EpisodeJumptron  title=" الحلقات المضافة حديثا"  />
     </main>
     </>
   )
