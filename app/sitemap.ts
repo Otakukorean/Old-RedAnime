@@ -3,11 +3,11 @@ import { MetadataRoute } from 'next'
 import getAllPosts from './lib/getAllanimes';
  
 const getAnimes= async () => {
-     const result = await fetch('http://localhost:3000/api/anime/all')
+     const result = await fetch('https://redanime.net/api/anime/all')
      return result.json()
 }
 const getAllEpisodes = async () =>{ 
-     const result = await fetch('http://localhost:3000/api/Episodes/all')
+     const result = await fetch('http://redanime.net/api/Episodes/all')
      return result.json()
 }
 
