@@ -21,6 +21,7 @@ import Subscripe from '../Subscripe'
 import { modals } from '@mantine/modals';
 import Link from 'next/link'
 import AnimeCard from '../Cards/AnimeCard'
+import { UpdateEpisode } from '../Modal/Episode/UpdateEpisode/UpdateEpisode'
 interface PageProps {
   name : string ;
   epName ?:string;
@@ -205,7 +206,7 @@ const index = (props : PageProps) => {
          {user?.organizationMemberships[0].role === "admin"&& (
            <AddBtnContainer>
                        <AdminBtn style={{width:"75px",padding:"3px",fontSize:"0.8rem"}} onClick={() => EpisodeModal(el?.id)}>حذف الحلقة</AdminBtn>
-
+                       <ModalBtn title={<AdminBtn style={{width:"75px",padding:"3px",fontSize:"0.8rem"}} >تعديل الحلقة</AdminBtn>} ModalPage={<UpdateEpisode id={el?.id} EpName={el?.EpName} EpNumber={el?.EpNumber} animeId={el?.animeId} isfirst={el?.isfirst} islast={el?.islast} pin={el?.pin} refetch={refetch}  Servers={el?.Servers} />} />
            </AddBtnContainer>
          )}
          </SwiperSlide>

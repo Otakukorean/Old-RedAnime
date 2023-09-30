@@ -11,7 +11,7 @@ export const Header = styled.header`
      width: 100%;
      top: 0; 
      height: 4rem;
-     z-index: 999999;
+     z-index: 99;
 `
 
 export const Nav = styled.nav`

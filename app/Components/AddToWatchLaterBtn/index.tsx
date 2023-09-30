@@ -1,10 +1,10 @@
-import client from '@/app/libs/prisma/prismaDb';
-import { useQuery } from '@tanstack/react-query';
+
 import axios from 'axios';
 import React from 'react'
 import { AiOutlineClockCircle , AiFillClockCircle } from 'react-icons/ai'
 import { useMutation, useQueryClient } from "@tanstack/react-query"
-
+import { toast } from 'react-toastify';
+import { useUser } from '@clerk/nextjs';
 interface PageProps {
      animeId : number;
      watchLater : {}[];
@@ -14,10 +14,9 @@ interface PageProps {
 
  
 const index = (props : PageProps) => {
+  const {isSignedIn} = useUser()
 
-     // const found = prop.Likes?.find((like :any) => {
-     //      return like.postId === prop.id && like.userId === user?.user?.id
-     //    })
+
      const found = props.watchLater?.find((fav :any) => {
           return fav.animeId === props?.animeId
         })      
@@ -45,14 +44,24 @@ const index = (props : PageProps) => {
             },
           }
         )
+
+        const Submit = (animeId : number) =>{
+          if(!isSignedIn) {
+            toast.error( "   !  عليك تسجيل الدخول     " ,{
+              theme:"dark" ,
+              style: {zIndex:100000}
+            })
+          }
+          mutate(animeId)
+        }
   return (
     <div>
      {
           found ? (
-               <AiFillClockCircle  onClick={() => mutate(props?.animeId)} cursor={'pointer'} color='#fff' size={30}/>
+               <AiFillClockCircle  onClick={() => Submit(props?.animeId)} cursor={'pointer'} color='#fff' size={30}/>
 
           ) :
-          <AiOutlineClockCircle  onClick={() => mutate (props?.animeId)} cursor={'pointer'} color='#fff' size={30}/>
+          <AiOutlineClockCircle  onClick={() => Submit (props?.animeId)} cursor={'pointer'} color='#fff' size={30}/>
      }
 
     </div>

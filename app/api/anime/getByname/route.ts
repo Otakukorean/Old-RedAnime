@@ -19,72 +19,114 @@ export async function GET(req : NextRequest , res : NextResponse ){
                },include :{
                     AnimeTags : {
                          include :{
+                              tag :true
+                         }
+                    },
+                    Episodes : {
+                         include :{
+                              Servers : {
+                                   select :{
+                                        ServerName : true , 
+                                        ServerUrl : true ,
+                                        id : true
+                                   }
+                              }
+                         } ,
+                         orderBy :{
+                              EpNumber : 'asc'
+                         }
+                    } ,     
+     
+               }}).then( async (res) => {          
+                    const getrelevent = await client.anime.findMany({
+                         where :{
+                              NOT : [
+                                   {
+                                        id : res?.id
+                                   }
+                              ] ,
+                              AnimeTags : {
+                                   some : {
+                                       tagId : {
+                                        in : res?.AnimeTags?.map((el) => {
+                                             return el?.tagId
+                                        })
+                                       }
+                                   }
+                              }
+                         } ,
+                         take: 15
+                    })
+                    return {
+                         anime : res ,
+                         relevant : getrelevent 
+                    }
+               })
+               return NextResponse.json(firstResult)
+          }
+          else {
+               const result = await client.anime.findUnique({where :{
+                    title : name ,
+               },include :{
+                    AnimeTags : {
+                         include :{
                               tag :{
                                    
                               }
                          }
                     },
                     Episodes : {
+                         include :{
+                              Servers : true
+                         } ,
                          orderBy :{
                               EpNumber : 'asc'
                          }
-                    } ,     
+                    } ,  
+                    favoriteList : {
+                         where :{
+                              userId : user?.id
+                         }
+                    },
+                    WatchLater : {
+                         where :{
+                              userId : user?.id
+                         }
+                    }   ,
+                    Subscripe :{
+                         where :{
+                              userId : user?.id
+                         }
+                    }  
      
-               }}) 
-               return NextResponse.json(firstResult)
-          }
-          const result = await client.anime.findUnique({where :{
-               title : name ,
-          },include :{
-               AnimeTags : {
-                    include :{
-                         tag :{
-                              
-                         }
-                    }
-               },
-               Episodes : true ,  
-               favoriteList : {
-                    where :{
-                         userId : user?.id
-                    }
-               },
-               WatchLater : {
-                    where :{
-                         userId : user?.id
-                    }
-               }   ,
-               Subscripe :{
-                    where :{
-                         userId : user?.id
-                    }
-               }  
-
-          }}).then( async (res) => {          
-               const getrelevent = await client.anime.findMany({
-                    where :{
-                         NOT : [
-                              {
-                                   id : res?.id
+               }}).then( async (res) => {          
+                    const getrelevent = await client.anime.findMany({
+                         where :{
+                              NOT : [
+                                   {
+                                        id : res?.id
+                                   }
+                              ] ,
+                              AnimeTags : {
+                                   some : {
+                                       tagId : {
+                                        in : res?.AnimeTags?.map((el) => {
+                                             return el?.tagId
+                                        })
+                                       }
+                                   }
                               }
-                         ] ,
-                         AnimeTags : {
-                              some : {
-                                  tagId : {
-                                   in : res?.AnimeTags?.map((el) => {
-                                        return el?.tagId
-                                   })
-                                  }
-                              }
-                         }
+                         } ,
+                         take: 15
+                    })
+                    return {
+                         anime : res ,
+                         relevant : getrelevent 
                     }
                })
-               return {
-                    anime : res ,
-                    relevant : getrelevent 
-               }
-          })
-         return NextResponse.json(result)
+              return NextResponse.json(result)
+          }
+         
      } catch (error: any) {
          return NextResponse.json({err : error.message})
      }

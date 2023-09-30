@@ -12,6 +12,8 @@ import { MantineProvider } from '@mantine/core';
 import { QueryClient , QueryClientProvider } from '@tanstack/react-query'
 import { ModalsProvider } from '@mantine/modals';
 const queryClient = new QueryClient()
+import { ToastContainer } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 const Container = (props : Props) => {
   const [active,setActive] = useState<boolean>(false)
@@ -35,6 +37,7 @@ const Container = (props : Props) => {
     <StyledComponentsRegistry>
       <SkeletonTheme baseColor="#202020" highlightColor="#444">
       <Navbar active={active} setActive={setActive} />
+      <ToastContainer style={{zIndex:100000}} />
       <Sidebar active={active}>
      {props.children}
      </Sidebar>

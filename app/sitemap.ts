@@ -1,36 +1,38 @@
+import type { MetadataRoute } from "next";
+import getAllPosts from "./lib/getAllanimes";
+import getAllEpisodes from "./lib/getAllepisodes";
 
- import getAllPosts from "./lib/getAllanimes";
+export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
+  const posts = await Promise.resolve().then(async () => await getAllPosts() );
+  const episodes = await Promise.resolve().then(async () => await getAllEpisodes() );
+  const postUrls =
+    posts &&
+    posts.map((post : any) => ({
+      url: `https://redanim.net/anime/${post.title}`,
+      lastModified:Date.now(),
+    }));
+  const episodeUrls =
+    posts &&
+    episodes.map((post : any) => ({
+      url: `https://redanim.net/anime/${post.title}`,
+      lastModified:Date.now(),
+    }));
 
-
-export default async function sitemap(){
-     const baseUrl = 'https://redanime.net';
-     const posts =await getAllPosts();
-  
-     const postsUrl = posts.map((post : any) => {
-          return {
-               url : `${baseUrl}/anime/${post.title}` ,
-               lastModified : new Date()
-          }
-     })
-     // const Episodes = await getAllEpisodes();
-     // const EpisodesUrl = Episodes.map((ep : any) => {
-     //      return {
-     //           url : `${baseUrl}/watch/${ep.anime.title}/${ep.EpName}` ,
-     //           lastModified : new Date()
-     //      }
-     // })
-
-
-     
-
-     
   return [
     {
-      url:baseUrl ,
-      lastModified: new Date(),
-
+      url: `https://redanim.net`,
+      lastModified:Date.now(),
     },
-    ...postsUrl ,
-   
-  ]
+    {
+      url: `https://redanim.net/anime-list`,
+      lastModified:Date.now(),
+    },
+    {
+      url: `https://redanim.net/popular`,
+      lastModified:Date.now(),
+    },
+    ...postUrls ,
+    ...episodeUrls
+  
+  ];
 }

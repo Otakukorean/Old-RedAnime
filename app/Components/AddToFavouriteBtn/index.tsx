@@ -1,9 +1,10 @@
-import client from '@/app/libs/prisma/prismaDb';
-import { useQuery } from '@tanstack/react-query';
+
 import axios from 'axios';
 import React from 'react'
 import { AiOutlineHeart , AiFillHeart } from 'react-icons/ai'
 import { useMutation, useQueryClient } from "@tanstack/react-query"
+import { toast } from 'react-toastify';
+import { useUser } from '@clerk/nextjs';
 
 interface PageProps {
      animeId : number;
@@ -14,6 +15,7 @@ interface PageProps {
 
  
 const index = (props : PageProps) => {
+  const {isSignedIn} = useUser()
   const found = props.favourite?.find((fav :any) => {
     return fav.animeId === props?.animeId
   })
@@ -43,15 +45,23 @@ const index = (props : PageProps) => {
     }
   )
 
-  
+  const Submit = (animeId : number) =>{
+    if(!isSignedIn) {
+      toast.error( "   !  عليك تسجيل الدخول     " ,{
+        theme:"dark" ,
+        style: {zIndex:100000}
+      })
+    }
+    mutate(animeId)
+  }
   return (
     <div>
      {
           found ? (
-               <AiFillHeart title='مضاف الى قائمة المفضلة'  onClick={() => mutate(props?.animeId)} cursor={'pointer'} color='#FB2576' size={30}/>
+               <AiFillHeart title='مضاف الى قائمة المفضلة'  onClick={() => Submit(props?.animeId)} cursor={'pointer'} color='#FB2576' size={30}/>
 
           ) :
-          <AiOutlineHeart title='اضافة الى قائمة المفضلة' onClick={() => mutate(props?.animeId)} cursor={'pointer'} color='#FB2576' size={30}/>
+          <AiOutlineHeart title='اضافة الى قائمة المفضلة' onClick={() => Submit(props?.animeId)} cursor={'pointer'} color='#FB2576' size={30}/>
      }
 
     </div>
