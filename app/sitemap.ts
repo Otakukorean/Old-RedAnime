@@ -1,20 +1,10 @@
-import axios from 'axios';
-import { MetadataRoute } from 'next'
-import getAllPosts from './lib/getAllanimes';
- 
-const getAnimes= async () => {
-     const result = await fetch('https://redanime.net/api/anime/all')
-     return result.json()
-}
-const getAllEpisodes = async () =>{ 
-     const result = await fetch('http://redanime.net/api/Episodes/all')
-     return result.json()
-}
+
+ import getAllPosts from "./lib/getAllanimes";
 
 
 export default async function sitemap(){
      const baseUrl = 'https://redanime.net';
-     const posts =await getAnimes();
+     const posts =await getAllPosts();
   
      const postsUrl = posts.map((post : any) => {
           return {
@@ -22,13 +12,13 @@ export default async function sitemap(){
                lastModified : new Date()
           }
      })
-     const Episodes = await getAllEpisodes();
-     const EpisodesUrl = Episodes.map((ep : any) => {
-          return {
-               url : `${baseUrl}/watch/${ep.anime.title}/${ep.EpName}` ,
-               lastModified : new Date()
-          }
-     })
+     // const Episodes = await getAllEpisodes();
+     // const EpisodesUrl = Episodes.map((ep : any) => {
+     //      return {
+     //           url : `${baseUrl}/watch/${ep.anime.title}/${ep.EpName}` ,
+     //           lastModified : new Date()
+     //      }
+     // })
 
 
      
@@ -41,6 +31,6 @@ export default async function sitemap(){
 
     },
     ...postsUrl ,
-    ...EpisodesUrl
+   
   ]
 }

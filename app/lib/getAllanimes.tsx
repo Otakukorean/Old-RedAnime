@@ -1,10 +1,8 @@
-import axios from "axios";
-
 
 const getAllPosts = async () => {
   
-    const posts =await axios.get('/api/anime/all')
-    return posts.data;
+    const posts =await fetch('https://redanime.net/api/anime/all')
+    return posts.json();
   
 };
 
