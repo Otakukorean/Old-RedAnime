@@ -1,9 +1,11 @@
-import axios from "axios";
+
+
+import axios from "axios"
+
 const getAllPosts = async () => {
-  
-    const posts =await axios.get('/api/anime/all')
-    return posts.data;
-  
+    const data = await axios.get('/api/anime/all')
+ 
+  return data.data
 };
 
 export default getAllPosts;
