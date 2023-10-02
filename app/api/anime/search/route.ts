@@ -13,9 +13,19 @@ export async function GET(req : NextRequest , res : NextResponse){
        
           const result = await client.anime.findMany({
                where : {
-                    title : {
-                         contains : query
-                    }
+                    OR:[
+                         {
+                              title : {
+                                   contains : query
+                              }
+                         } ,
+                         {
+                              secondtitle : {
+                                   contains : query
+                              }
+                         }
+                    ]
+                   
                }
           })
          return NextResponse.json(result)
