@@ -20,7 +20,10 @@ export async function GET(req : NextRequest , res : NextResponse){
                     pin : true
                },
                limit : 12 ,
-               page : Number(page)
+               page : Number(page) ,
+               orderBy : {
+                    createdAt : 'desc'
+               }
           })
          return NextResponse.json({result  , hasNextPage : result.hasNextPage ,nextPage : result.hasNextPage && (await result.nextPage()).page})
      } catch (error: any) {
