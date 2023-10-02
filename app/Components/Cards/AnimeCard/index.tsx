@@ -1,5 +1,5 @@
 import React from 'react'
-import {AnimeCardContainer, AnimeCardImage, CardContainer, RatingIcon, ReatingAndTypeContainer, TypeIcon,AnimeTitle,SeasonGenerContainer,Season_Gener , StatusIcon} from '../Style'
+import {AnimeCardContainer, AnimeCardImage, CardContainer, RatingIcon, ReatingAndTypeContainer, TypeIcon,AnimeTitle,SeasonGenerContainer,Season_Gener , StatusIcon,Description} from '../Style'
 import Skeleton from 'react-loading-skeleton'
 import 'react-loading-skeleton/dist/skeleton.css'
 import { useMediaQuery } from '@mantine/hooks';
@@ -39,7 +39,7 @@ const index = (props : CardType) => {
     <CardContainer>
      {
           props.data.description ? (
-               <HoverCard position='top' styles={{'dropdown' :{background:"#fff"}}}>
+               <HoverCard position='top' styles={{'dropdown' :{background:"#fff",maxHeight:"330px",maxWidth:'300px'}}}>
                <AnimeCardContainer>
                    <AnimeCardImage   src={props?.data?.imageUrl} width={380} height={560} alt='' />
                    <ReatingAndTypeContainer>
@@ -60,7 +60,7 @@ const index = (props : CardType) => {
               </SeasonGenerContainer>
               <HoverCard.Dropdown>
                    <AnimeTitle style={{textAlign:"center",color:"#000"}}>{props.data?.title}</AnimeTitle><br />
-                   <Text color='#000' style={{maxWidth:"300px",direction:'rtl'}}>القصة : {props.data.description}  </Text>
+                   <Description  color='#000' >القصة : {props.data.description}  </Description>
 
                  </HoverCard.Dropdown>
               </HoverCard>

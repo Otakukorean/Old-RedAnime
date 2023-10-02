@@ -5,6 +5,8 @@ import React, { useEffect } from 'react'
 import { useInView } from 'react-intersection-observer'
 import { useInfiniteQuery } from '@tanstack/react-query'
 import Card from '@/app/Components/Cards/EpisodeCard/index'
+import { useUser } from '@clerk/nextjs'
+import { redirect } from 'next/navigation'
 
 const page = () => {
      const {isLoading,isError,data,error,isFetchingNextPage,fetchNextPage,hasNextPage , refetch,isFetching} = useInfiniteQuery(['animes'] , async({pageParam = 0}) => {
@@ -19,7 +21,10 @@ const page = () => {
             fetchNextPage()
           }
         }, [inView])
-
+        const {isSignedIn} = useUser()
+        if(!isSignedIn) {
+          redirect('/sign-in')
+          }
         if(isLoading || isFetching) {
           return <span>Loading ...</span>
         }

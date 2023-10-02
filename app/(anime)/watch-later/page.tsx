@@ -6,7 +6,8 @@ import { useInView } from 'react-intersection-observer'
 import { useInfiniteQuery } from '@tanstack/react-query'
 import Card from '@/app/Components/Cards/AnimeCard'
 
-
+import { useUser } from '@clerk/nextjs'
+import { redirect } from 'next/navigation'
 
 // (p1, p2) => (p1.price < p2.price) ? 1 : (p1.price > p2.price) ? -1 : 0);
 
@@ -23,6 +24,10 @@ const page = () => {
             fetchNextPage()
           }
         }, [inView])
+        const {isSignedIn} = useUser()
+        if(!isSignedIn) {
+          redirect('/sign-in')
+          }
         if(isLoading && isFetching) {
           return <span>Loading ...</span>
         }
