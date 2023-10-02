@@ -106,6 +106,35 @@ const index = (props : PageProps) => {
             spaceBetween: 40
           }
         }
+     const breakpoints2 = {
+
+          320: {
+            slidesPerView: 1.3,
+            spaceBetween: 20
+          },
+    
+      360 : {
+            slidesPerView: 1.7,
+        spaceBetween: 30
+      },
+          480: {
+            slidesPerView: 2.3,
+            spaceBetween: 30
+          },
+    
+          640: {
+            slidesPerView: 5,
+            spaceBetween: 40
+          } ,
+          1000 : {
+            slidesPerView: 5,
+            spaceBetween: 40
+          } ,
+          1300 : {
+            slidesPerView: 7.5,
+            spaceBetween: 40
+          }
+        }
 
     if(isLoading && isFetching && isFetched) {
       return <span>Loading ....</span>
@@ -230,7 +259,7 @@ const index = (props : PageProps) => {
     <Swiper 
       spaceBetween={50}
       slidesPerView={6}
-     breakpoints={breakpoints}
+     breakpoints={breakpoints2}
      style={{paddingRight:"30px",paddingLeft:"40px"}}
      className='my-swiper'
      dir='ltr'
