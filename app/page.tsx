@@ -5,10 +5,12 @@ import Animejumptron  from './Components/AnimeJumptron'
 import EpisodeJumptron from './Components/EpisodeJumptron'
 import LatestAnimeJumptron from './Components/LatestAnimeJumptron'
 import PinnedEpisodesJumprton from './Components/PinnedEpisodeJumptron'
+
+
 export default function Home() {
   return (
     <>
-    <title>RedAnime - لمشاهدة الانمي المترجم</title>
+ 
     <main>
         <Hero/>
         <Animejumptron  title="الانميات المثبتة" />

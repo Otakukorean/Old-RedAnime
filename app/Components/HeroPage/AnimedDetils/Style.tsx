@@ -103,7 +103,12 @@ export const AnimeTitle = styled.span`
 
 export const AnimeDescriptionContainer = styled.div`
     width :600px ;
-
+    overflow: hidden;
+   text-overflow: ellipsis;
+   display: -webkit-box;
+   -webkit-line-clamp: 6; /* number of lines to show */
+           line-clamp:6;
+   -webkit-box-orient: vertical;
     @media screen and (max-width : 768px) {
      width: 340px;
      margin-bottom: 20px;

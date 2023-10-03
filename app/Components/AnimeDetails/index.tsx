@@ -1,3 +1,4 @@
+"use client"
 import React, { useEffect, useState } from 'react'
 import {AnimeDetailsContainer,AnimeCardActionsContainer,AnimeCardContainer,AnimeHeroCardImage, ReatingAndTypeContainer, TypeIcon, RatingIcon,AnimeActionContainer,ItemsContainer,AnimeDetails,AnimeTitle,AnimeStory,AnimeSeasonandGener,SeasonButtonsContainer,SeasonButton,AdminBtns,AdminBtn} from './Style'
 import { Container,LinetitleContainer ,Line , Jumpitle  } from '@/app/Components/AnimeJumptron/Style'
