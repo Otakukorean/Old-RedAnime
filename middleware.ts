@@ -3,7 +3,7 @@ import { withClerkMiddleware } from "@clerk/nextjs/server";
 import { NextResponse } from "next/server";
 import type { NextRequest } from 'next/server'
 
-const publicPaths = ['/api/anime/getByname','/anime/:name','/watch/:name/:epname','/api/Episodes/GetByname','/anime-list' ,'/api/Episodes/recent','/api/anime/recent',"/","/api/anime/Get",'/api/anime/getById' , '/filter' ,  '/watch/:name/:epname','/api/anime/recent','/api/anime/filter','/api/tags/Get','/api/anime/getPinned','/popular','/api/anime/rating','/api/anime/all','/api/Episodes/all','/api/Gener/Get','/api/Episodes/getPinned' ,"/sign-in*", "/sign-up*",'/'];
+const publicPaths = ['/api/anime/getByname','/anime/:name','/watch/:name/:epname','/api/Episodes/GetByname','/anime-list' ,'/api/Episodes/recent','/api/anime/recent',"/","/api/anime/Get",'/api/anime/getById' , '/filter' ,  '/watch/:name/:epname','/api/anime/recent','/api/anime/filter','/api/tags/Get','/api/anime/getPinned','/popular','/api/anime/rating','/api/anime/all','/api/Episodes/all','/api/Gener/Get','/api/Episodes/getPinned' ,"/sign-in*", "/sign-up*",'/','/api/tags/getByname'];
 const isPublic = (path: string) => {
   return publicPaths.find((x) =>
     path.match(new RegExp(`^${x}$`.replace("*$", "($|/)")))

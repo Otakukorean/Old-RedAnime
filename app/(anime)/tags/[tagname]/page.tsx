@@ -12,8 +12,8 @@ interface PageProps {
 }
 
 const page = (props : PageProps) => {
-     const {isLoading,isError,data,error,isFetchingNextPage,fetchNextPage,hasNextPage , refetch} = useInfiniteQuery(['filters'] , async({pageParam = 0}) => {
-          const res= await fetch(`/api/anime/filter?page=${pageParam}&tagname=${decodeURI(props.params.tagname)}`)
+     const {isLoading,isError,data,error,isFetchingNextPage,fetchNextPage,hasNextPage , refetch} = useInfiniteQuery(['tags'] , async({pageParam = 0}) => {
+          const res= await fetch(`/api/tags/getByname?page=${pageParam}&tag=${props.params.tagname}`)
           
       
           
