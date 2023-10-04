@@ -62,14 +62,18 @@ const page = ({params} : PageProps) => {
      </VidoeContainer>
       <NextPrevContainer>
       {data?.NextEpisode ? (
-        <Link href={`/watch/${data?.episode?.anime?.title}/${data?.NextEpisode?.EpName}`}>
+        <Link href={`/watch/${data?.episode?.anime?.title}/${data?.NextEpisode?.EpName}`} passHref legacyBehavior>
+          <a href={`/watch/${data?.episode?.anime?.title}/${data?.NextEpisode?.EpName}`}>
               <NextPrevButton $isprev={false}>التالي</NextPrevButton>
+              </a>
         </Link>
       ) : null}
       {
         !data?.PrevEpisode  ? null : (
-          <Link href={`/watch/${data?.episode?.anime?.title}/${data?.PrevEpisode?.EpName}`}>
+          <Link href={`/watch/${data?.episode?.anime?.title}/${data?.PrevEpisode?.EpName}`} passHref legacyBehavior>
+            <a href={`/watch/${data?.episode?.anime?.title}/${data?.PrevEpisode?.EpName}`}>
           <NextPrevButton $isprev>السابق</NextPrevButton>
+          </a>
       </Link>
         )
       }
