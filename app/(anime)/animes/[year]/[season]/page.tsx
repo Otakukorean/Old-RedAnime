@@ -5,6 +5,7 @@ import React, { useEffect } from 'react'
 import { useInView } from 'react-intersection-observer'
 import { useInfiniteQuery } from '@tanstack/react-query'
 import Card from '@/app/Components/Cards/AnimeCard'
+import {Helmet} from "react-helmet";
 
 interface Props {
      params : {year : number , season : string}
@@ -27,7 +28,11 @@ const page = (params : Props) => {
         }
   return (
      <>
-     <title>{decodeURI(params.params.season)} {params.params.year}</title>
+        <Helmet>
+                <meta charSet="utf-8" />
+                <title>{decodeURI(params.params.season)} {params.params.year}</title>
+               
+            </Helmet>
     <Container >
      <LinetitleContainer>
           <Line/>

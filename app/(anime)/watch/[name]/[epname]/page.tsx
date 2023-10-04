@@ -1,10 +1,12 @@
 "use client"
 import React, { useEffect, useState } from 'react'
+import { useSignal } from "@preact/signals-react";
 import {Container,VideoServersContainer,ServersButtonsContainer,ServerButton,VideoWatchContainer,NextPrevContainer,NextPrevButton,VidoeContainer} from './Style'
 import AnimeDetails from '@/app/Components/AnimeDetails'
 import axios from 'axios'
 import { useQuery } from '@tanstack/react-query'
 import Link from 'next/link'
+import {Helmet} from "react-helmet";
 
 interface PageProps {
   params : {epname : string , name : string}
@@ -18,23 +20,25 @@ const getEpisodeByname = async (name : string,animename : string) => {
 
 
 const page = ({params} : PageProps) => {
-  const [Server , SetServer] = useState({
-    id : 0 ,
-    ServerName : "" ,
-    ServerUrl : ""
-  })
+
   const {data ,isLoading,refetch,isFetching}  = useQuery({queryFn:() =>  getEpisodeByname(params.epname , params.name)
     ,queryKey :['episode']})
 
-   
+    const signal= useSignal({
+      id : 0 ,
+      ServerName : "" ,
+      ServerUrl : ""
+    })
 
   useEffect(() => {
     if(!isLoading && !isFetching) {
-      SetServer({
+
+      signal.value = {
+    
         id : data?.episode?.Servers[0].id ,
         ServerName : data?.episode?.Servers[0]?.ServerName ,
         ServerUrl :data?.episode?.Servers[0]?.ServerUrl
-      })
+      }
     }
   },[isLoading , isFetching])
   if(isFetching && isLoading) {
@@ -44,13 +48,21 @@ const page = ({params} : PageProps) => {
   
   return (
     <>
-    <title>{decodeURI(params.name) + ' ' + decodeURI(params.epname)}</title>
-    <meta property="og:url" content={`https://redanime.net/watch/${decodeURI(params.name)}/${decodeURI(params.epname)}`}/>
+       <Helmet>
+                <meta charSet="utf-8" />
+                <title>{decodeURI(params.name) + ' ' + decodeURI(params.epname)}</title>
+    <meta property="og:url" content={`https://redanime.net/watch/${decodeURI(params.name)}/${decodeURI(params.epname)}`}/>               
+            </Helmet>
+  
     <Container>
       <VideoServersContainer>
         <ServersButtonsContainer>
           {data?.episode?.Servers?.map((el : any) => (
-                   <ServerButton onClick={() => SetServer({id: el.id ,ServerName : el.ServerName ,ServerUrl:el.ServerUrl})} $isActive={el?.id == Server.id} >{el?.ServerName}</ServerButton>
+                   <ServerButton onClick={() => {
+                    signal.value = {
+                      id: el.id ,ServerName : el.ServerName ,ServerUrl:el.ServerUrl
+                    }
+                   }} $isActive={el?.id == signal.value.id} >{el?.ServerName}</ServerButton>
           ))}
 
 
@@ -58,7 +70,7 @@ const page = ({params} : PageProps) => {
       </VideoServersContainer>
       <VideoWatchContainer>
         <VidoeContainer>
-      <iframe width="960" height="720" src={Server.ServerUrl}  allowFullScreen={true} />
+      <iframe width="960" height="720" src={signal.value.ServerUrl}  allowFullScreen={true} />
      </VidoeContainer>
       <NextPrevContainer>
       {data?.NextEpisode ? (

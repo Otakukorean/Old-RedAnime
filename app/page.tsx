@@ -5,12 +5,17 @@ import Animejumptron  from './Components/AnimeJumptron'
 import EpisodeJumptron from './Components/EpisodeJumptron'
 import LatestAnimeJumptron from './Components/LatestAnimeJumptron'
 import PinnedEpisodesJumprton from './Components/PinnedEpisodeJumptron'
+import {Helmet} from "react-helmet";
 
 
 export default function Home() {
   return (
     <>
- 
+    <Helmet>
+                <meta charSet="utf-8" />
+                <title>RedAnime - لمشاهدة الانمي المترجم</title>
+               
+            </Helmet>
     <main>
         <Hero/>
         <Animejumptron  title="الانميات المثبتة" />

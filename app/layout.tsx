@@ -4,13 +4,7 @@ import Container from './Components/Container/Container'
 import { ClerkProvider } from '@clerk/nextjs'
 
 
-export const metadata: Metadata = {
-  title: {
-    default : 'RedAnime - لمشاهدة الانمي المترجم' ,
-    template : ''
-  }
-  
-}
+
 
 export default function RootLayout({
   children,

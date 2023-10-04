@@ -13,6 +13,7 @@ import { useInView } from 'react-intersection-observer'
 import { motion } from 'framer-motion'
 import { Input,Select,MultiSelect , Button } from '@mantine/core';
 import { useMediaQuery } from '@mantine/hooks';
+import {Helmet} from "react-helmet";
 
 const Years = [
   {
@@ -118,7 +119,7 @@ const Years = [
      value: '2022', label: '2022' 
   },
   {
-     value: '2023', label: '2019' 
+     value: '2023', label: '2023' 
   },
 ]
 
@@ -170,7 +171,11 @@ const page = () => {
 
   return (
    <>
-   <title>قائمة الانمي</title>
+
+   <Helmet>
+                <meta charSet="utf-8" />
+                <title>قائمة الانمي</title>               
+            </Helmet>
     <div >
    
       {user?.organizationMemberships[0].role === "admin" && (
