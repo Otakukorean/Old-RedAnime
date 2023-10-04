@@ -34,8 +34,8 @@ const index = (props : CardType) => {
      <>
      {
           !props.data.isLoading && (
-               <Link href={`/anime/${props?.data?.title}`}>
-
+               <Link href={`/anime/${props?.data?.title}`} passHref legacyBehavior>
+                    <a href={`/anime/${props?.data?.title}`}> 
     <CardContainer>
      {
           props.data.description ? (
@@ -83,7 +83,7 @@ const index = (props : CardType) => {
      }
 
     </CardContainer>
-
+    </a>
     </Link>
           )
      }
