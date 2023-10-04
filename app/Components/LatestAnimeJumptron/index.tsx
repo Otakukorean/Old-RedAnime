@@ -20,7 +20,7 @@ interface PageProps {
     return result.data
   }
 const index = (props : PageProps) => {
-    const {data} = useQuery({queryFn :() => getAllRecent()});
+    const {data} = useQuery({queryFn :() => getAllRecent() , queryKey:['latest']});
      const breakpoints = {
 
           320: {
