@@ -1,3 +1,4 @@
+"use client"
 import React from 'react'
 
 import AnimedDetails from '@/app/Components/AnimeDetails'
@@ -18,12 +19,13 @@ const page = ({params} : PageProps) => {
 
   return (
     <>
-       <Helmet>
+    
+    <div>
+    <Helmet>
                 <meta charSet="utf-8" />
                 <title>{decodeURI(params.name) + ' انمي'}</title>
                
             </Helmet>
-    <div>
 
           <AnimedDetails name={params.name} /> 
     </div>
