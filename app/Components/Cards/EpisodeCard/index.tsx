@@ -24,7 +24,7 @@ const index = (props : PageProps) => {
   console.log(props.ifSeen);
   
   return (
-    <Link href={`/watch/${props.AnimeName}/${props.epname}`} passHref legacyBehavior>
+   
       <a href={`/watch/${props.AnimeName}/${props.epname}`}>
     <CardContainer>
       <AnimeCardContainer $isEp={props.bigCard}>
@@ -53,7 +53,7 @@ const index = (props : PageProps) => {
       <EpisodeTitle >الحلقة  {props.epNumber}</EpisodeTitle>
     </CardContainer>
     </a>
-    </Link>
+  
   )
 }
 
