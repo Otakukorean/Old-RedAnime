@@ -30,29 +30,22 @@ const page = ({params} : PageProps) => {
       ServerUrl : ""
     })
 
-  // useEffect(() => {
-  
-  // },[isLoading , isFetching])
-  effect(() => {
-    if(!isLoading && !isFetching) {
-
-      signal.value = {
+  useEffect(() => {
+    signal.value = {
     
-        id : data?.episode?.Servers[0].id ,
-        ServerName : data?.episode?.Servers[0]?.ServerName ,
-        ServerUrl :data?.episode?.Servers[0]?.ServerUrl
-      }
+      id : data?.episode?.Servers[0].id ,
+      ServerName : data?.episode?.Servers[0]?.ServerName ,
+      ServerUrl :data?.episode?.Servers[0]?.ServerUrl
     }
-  })
+  },[isLoading , isFetching])
+ 
   if(isFetching && isLoading) {
     return <span>Loading ...</span>
   }
 
   const changeServer = (el : any) => {
     batch(() => {
-      signal.value = {
-        id: el.id ,ServerName : el.ServerName ,ServerUrl:el.ServerUrl
-      }
+     
     })
   }
 
@@ -69,7 +62,11 @@ const page = ({params} : PageProps) => {
       <VideoServersContainer>
         <ServersButtonsContainer>
           {data?.episode?.Servers?.map((el : any) => (
-                   <ServerButton onClick={() => changeServer(el)} $isActive={el?.id == signal.value.id} >{el?.ServerName}</ServerButton>
+                   <ServerButton onClick={() => {
+                    signal.value = {
+                     ...signal.value,id: el.id ,ServerName : el.ServerName ,ServerUrl:el.ServerUrl
+                    }
+                   }} $isActive={el?.id == signal.value.id} >{el?.ServerName}</ServerButton>
           ))}
 
 
