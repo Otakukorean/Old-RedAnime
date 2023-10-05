@@ -1,6 +1,6 @@
 "use client"
 import React, { useEffect, useState } from 'react'
-import { useSignal } from "@preact/signals-react";
+import { useSignal , effect ,batch} from "@preact/signals-react";
 import {Container,VideoServersContainer,ServersButtonsContainer,ServerButton,VideoWatchContainer,NextPrevContainer,NextPrevButton,VidoeContainer} from './Style'
 import AnimeDetails from '@/app/Components/AnimeDetails'
 import axios from 'axios'
@@ -30,7 +30,10 @@ const page = ({params} : PageProps) => {
       ServerUrl : ""
     })
 
-  useEffect(() => {
+  // useEffect(() => {
+  
+  // },[isLoading , isFetching])
+  effect(() => {
     if(!isLoading && !isFetching) {
 
       signal.value = {
@@ -40,9 +43,17 @@ const page = ({params} : PageProps) => {
         ServerUrl :data?.episode?.Servers[0]?.ServerUrl
       }
     }
-  },[isLoading , isFetching])
+  })
   if(isFetching && isLoading) {
     return <span>Loading ...</span>
+  }
+
+  const changeServer = (el : any) => {
+    batch(() => {
+      signal.value = {
+        id: el.id ,ServerName : el.ServerName ,ServerUrl:el.ServerUrl
+      }
+    })
   }
 
   
@@ -58,11 +69,7 @@ const page = ({params} : PageProps) => {
       <VideoServersContainer>
         <ServersButtonsContainer>
           {data?.episode?.Servers?.map((el : any) => (
-                   <ServerButton onClick={() => {
-                    signal.value = {
-                      id: el.id ,ServerName : el.ServerName ,ServerUrl:el.ServerUrl
-                    }
-                   }} $isActive={el?.id == signal.value.id} >{el?.ServerName}</ServerButton>
+                   <ServerButton onClick={() => changeServer(el)} $isActive={el?.id == signal.value.id} >{el?.ServerName}</ServerButton>
           ))}
 
 
