@@ -25,7 +25,7 @@ const index = (props : PageProps) => {
   
   return (
    
-      <Link href={`/watch/${props.AnimeName}/${props.epname}`}>
+      <a href={`/watch/${props.AnimeName}/${props.epname}`}>
     <CardContainer>
       <AnimeCardContainer $isEp={props.bigCard}>
           <AnimeCardImage $isWatching={decodeURI(props.currentEpName)  == props.epname} src={props.imageSrc}  width={160} height={250} alt='' />
@@ -52,7 +52,7 @@ const index = (props : PageProps) => {
       
       <EpisodeTitle >الحلقة  {props.epNumber}</EpisodeTitle>
     </CardContainer>
-    </Link>
+    </a>
   
   )
 }
