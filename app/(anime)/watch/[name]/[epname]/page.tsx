@@ -24,30 +24,14 @@ const page = ({params} : PageProps) => {
   const {data ,isLoading,refetch,isFetching}  = useQuery({queryFn:() =>  getEpisodeByname(params.epname , params.name)
     ,queryKey :['episode']})
 
-    const signal= useSignal({
+    const [Server,SetServer]= useState({
       id : 0 ,
       ServerName : "" ,
       ServerUrl : ""
     })
 
-  useEffect(() => {
-    signal.value = {
-    
-      id : data?.episode?.Servers[0].id ,
-      ServerName : data?.episode?.Servers[0]?.ServerName ,
-      ServerUrl :data?.episode?.Servers[0]?.ServerUrl
-    }
-  },[isLoading , isFetching])
  
-  if(isFetching && isLoading) {
-    return <span>Loading ...</span>
-  }
 
-  const changeServer = (el : any) => {
-    batch(() => {
-     
-    })
-  }
 
   
   return (
@@ -63,10 +47,12 @@ const page = ({params} : PageProps) => {
         <ServersButtonsContainer>
           {data?.episode?.Servers?.map((el : any) => (
                    <ServerButton onClick={() => {
-                    signal.value = {
-                     ...signal.value,id: el.id ,ServerName : el.ServerName ,ServerUrl:el.ServerUrl
-                    }
-                   }} $isActive={el?.id == signal.value.id} >{el?.ServerName}</ServerButton>
+                   SetServer({
+                    id : el?.id ,
+                    ServerName : el?.ServerName ,
+                    ServerUrl : el?.ServerUrl
+                   })
+                   }} $isActive={el?.id == Server.id} >{el?.ServerName}</ServerButton>
           ))}
 
 
@@ -74,7 +60,7 @@ const page = ({params} : PageProps) => {
       </VideoServersContainer>
       <VideoWatchContainer>
         <VidoeContainer>
-      <iframe width="960" height="720" src={signal.value.ServerUrl}  allowFullScreen={true} />
+      <iframe width="960" height="720" src={Server.ServerUrl === "" ? data?.episode?.Servers[0]?.ServerUrl : Server.ServerUrl}  allowFullScreen={true} />
      </VidoeContainer>
       <NextPrevContainer>
       {data?.NextEpisode ? (
