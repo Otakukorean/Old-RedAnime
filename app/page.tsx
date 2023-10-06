@@ -13,6 +13,7 @@ export default function Home() {
     <>
 
     <main>
+      
         <Hero/>
         <Animejumptron  title="الانميات المثبتة" />
         <PinnedEpisodesJumprton  title="الحلقات المثبتة"   />
