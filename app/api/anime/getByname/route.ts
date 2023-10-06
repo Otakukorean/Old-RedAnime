@@ -136,7 +136,7 @@ export async function GET(req : NextRequest , res : NextResponse ){
                     const getNextSeason = await client.anime.findMany({
                          where :{
                               title :{
-                                   contains :`%${res?.title}%`
+                                   startsWith :`%${res?.title}%`
                               } ,
                               NOT :[
                                    {
