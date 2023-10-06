@@ -156,13 +156,13 @@ const index = (props : PageProps) => {
   return (
     <>
 
-    <meta name="description" content={`جميع حلقات انمي ${data?.anime?.id} مترجمة  بجودة عالية  ${data?.anime?.id} مترجم كامل على موقع ريد انمي. `}/>
-    <link rel="canonical" href={`https://redanime.net/anime/${data?.anime?.anime?.id}`}/>
+    <meta name="description" content={`جميع حلقات انمي ${data?.anime?.title} مترجمة  بجودة عالية  ${data?.anime?.title} مترجم كامل على موقع ريد انمي. `}/>
+    <link rel="canonical" href={`https://redanime.net/anime/${data?.anime?.anime?.title}`}/>
     <meta property="og:locale" content="ar_AR"/>
     <meta property="og:type" content="article"/>
-    <meta property="og:title" content={`جميع حلقات انمي ${data?.anime?.id} مترجمة  بجودة عالية  ${data?.anime?.id} مترجم كامل على موقع ريد انمي. `}/>
-    <meta property="og:description" content={`جميع حلقات انمي ${data?.anime?.id} مترجمة  بجودة عالية  ${data?.anime?.id} مترجم كامل على موقع ريد انمي. `}/>
-    <meta property="og:url" content={`https://redanime.net/anime/${data?.anime?.id}`}/>
+    <meta property="og:title" content={`جميع حلقات انمي ${data?.anime?.title} مترجمة  بجودة عالية  ${data?.anime?.title} مترجم كامل على موقع ريد انمي. `}/>
+    <meta property="og:description" content={`جميع حلقات انمي ${data?.anime?.title} مترجمة  بجودة عالية  ${data?.anime?.title} مترجم كامل على موقع ريد انمي. `}/>
+    <meta property="og:url" content={`https://redanime.net/anime/${data?.anime?.title}`}/>
     <meta property="og:site_name" content="RedAnime"/>
     <meta name="twitter:card" content={data?.anime?.imageUrl}/>
     <div>
