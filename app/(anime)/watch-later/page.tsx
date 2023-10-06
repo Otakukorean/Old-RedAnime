@@ -42,22 +42,24 @@ const page = () => {
      </LinetitleContainer>
 
     </Container>
-    <CardContainer>
     {
         data && data.pages.map((page) => (
           <React.Fragment key={page.nextId ?? 'latPage'}>
+                <CardContainer>
             {
+                
                 page.result?.result?.map((el : any,key : any) => (
-                  <Card key={key} data={{title : el?.anime?.title,type : el?.anime?.type,id : el?.anime?.id,imageUrl:el?.anime?.imageUrl , rating:el?.anime?.rating,season:el?.season, year:el?.year,isLoading:isLoading ,status:el?.status,description:el?.description}}/>
+                  <Card key={key} data={{title : el?.anime?.title,type : el?.anime?.type,id : el?.anime?.id,imageUrl:el?.anime?.imageUrl , rating:el?.anime?.rating,season:el?.season, year:el?.year,status:el?.status,description:el?.description}}/>
                 ))
                 
             }
+            </CardContainer>
              <span ref={ref}  style={{visibility:"hidden"}}>load more</span>
        
           </React.Fragment>
         ))
       }
-    </CardContainer>
+      
     </>
   )
 }

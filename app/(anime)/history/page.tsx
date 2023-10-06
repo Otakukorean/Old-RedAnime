@@ -11,7 +11,7 @@ import axios from 'axios'
 
 const page = () => {
      const {isLoading,isError,data,error,isFetchingNextPage,fetchNextPage,hasNextPage , refetch,isFetching} = useInfiniteQuery(['history'] , async({pageParam = 0}) => {
-          const res= await axios.get(`https://redanime.net/api/history/Get?page=${pageParam}`)
+          const res= await axios.get(`/api/history/Get?page=${pageParam}`)
           return res.data
         } , {
           getNextPageParam : (lastPage, pages) => lastPage.hasNextPage && lastPage.nextPage

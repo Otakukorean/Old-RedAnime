@@ -34,26 +34,26 @@ const page = () => {
      </LinetitleContainer>
 
     </Container>
-    <CardContainer>
+
    
         <>
                {
         data && data.pages.map((page) => (
           <React.Fragment key={page.nextId ?? 'latPage'}>
+                <CardContainer>
             {
                 page.result?.result?.map((el : any,key : any) => (
                   <Card key={key} epname={el?.EpName} epNumber={el?.EpNumber} AnimeName={el?.anime?.title} animeId={el?.anime?.id} imageSrc={el?.anime?.imageUrl}/>
                 ))
                 
             }
+            </CardContainer>
              <span ref={ref}  style={{visibility:"hidden"}}>load more</span>
        
           </React.Fragment>
         ))
       }
             </>
-    </CardContainer>
-    <span ref={ref}  style={{visibility:"hidden"}}>load more</span>
     </>
   )
 }
