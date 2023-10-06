@@ -47,12 +47,12 @@ const page = () => {
                 ))
                 
             }
+             <span ref={ref}  style={{visibility:"hidden"}}>load more</span>
        
           </React.Fragment>
         ))
       }
     </CardContainer>
-    <span ref={ref}  style={{visibility:"hidden"}}>load more</span>
     </>
   )
 }

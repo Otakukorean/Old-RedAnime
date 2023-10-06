@@ -55,6 +55,7 @@ const page = (props : PageProps) => {
                 ))
                 
             }
+             <span ref={ref}  style={{visibility:"hidden"}}>load more</span>
        
           </React.Fragment>
         ))
@@ -72,7 +73,6 @@ const page = (props : PageProps) => {
       
 
       </CardContainer>
-      <span ref={ref}  style={{visibility:"hidden"}}>load more</span>
     </div>
   )
 }

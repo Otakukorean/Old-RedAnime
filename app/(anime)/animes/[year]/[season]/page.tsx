@@ -53,6 +53,7 @@ const page = (params : Props) => {
                 ))
                 
             }
+             <span ref={ref}  style={{visibility:"hidden"}}>load more</span>
        
           </React.Fragment>
         ))

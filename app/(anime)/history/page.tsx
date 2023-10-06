@@ -20,7 +20,7 @@ const page = () => {
           if(inView && hasNextPage) {
             fetchNextPage()
           }
-        }, [inView])
+        },[inView])
         const {isSignedIn} = useUser()
         if(!isSignedIn) {
           redirect('/sign-in')
@@ -48,12 +48,13 @@ const page = () => {
                 ))
                 
             }
+            <span ref={ref}  style={{visibility:"hidden"}}>load more</span>
        
           </React.Fragment>
         ))
       }
     </CardContainer>
-    <span ref={ref}  style={{visibility:"hidden"}}>load more</span>
+
     </>
   )
 }
