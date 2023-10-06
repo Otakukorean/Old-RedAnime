@@ -30,6 +30,10 @@ const page = ({params} : PageProps) => {
       ServerUrl : ""
     })
 
+    if(isLoading && isFetching ) {
+      return <span>Loading...</span>
+    }
+
  
 
 

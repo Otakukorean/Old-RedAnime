@@ -137,9 +137,7 @@ const index = (props : PageProps) => {
           }
         }
 
-    if(isLoading && isFetching && isFetched) {
-      return <span>Loading ....</span>
-    }
+ 
     useEffect(() => {
       const getHistory = async () => {
         await axios.get('/api/history/ByUser').then((res) => {
@@ -152,7 +150,9 @@ const index = (props : PageProps) => {
         getHistory()
       }
     },[isFetching , isLoading])
-    
+    if(isLoading && isFetching ) {
+      return <span>Loading ....</span>
+    }
   return (
     <>
 
