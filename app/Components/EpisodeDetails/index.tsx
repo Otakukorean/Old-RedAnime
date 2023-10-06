@@ -41,11 +41,7 @@ const index = (params : PageProps) => {
         
         return (
           <>
-             <Helmet>
-                      <meta charSet="utf-8" />
-                      <title>{decodeURI(params.name) + ' ' + decodeURI(params.epname)}</title>
-          <meta property="og:url" content={`https://redanime.net/watch/${decodeURI(params.name)}/${decodeURI(params.epname)}`}/>               
-                  </Helmet>
+      
         
           <Container>
             <VideoServersContainer>
