@@ -268,7 +268,7 @@ const index = (props : PageProps) => {
      >
      
           {
-            data?.relevant?.map((el : any) => (
+            data?.nextSeason?.map((el : any) => (
               <SwiperSlide>
                 <AnimeCard data={{id:el?.id,imageUrl:el?.imageUrl,rating:el?.rating,status:el?.status,title:el?.title,type:el?.type}} />
               </SwiperSlide>
