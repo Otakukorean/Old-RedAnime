@@ -60,7 +60,7 @@ export async function GET(req : NextRequest , res : NextResponse ){
                     const getNextSeason = await client.anime.findMany({
                          where :{
                               title :{
-                                   contains :`%${res?.title}%`
+                                   startsWith :`%${res?.title.replace(/[0-9]/g, '')}%`
                               },
                               
                               NOT :[
@@ -136,7 +136,7 @@ export async function GET(req : NextRequest , res : NextResponse ){
                     const getNextSeason = await client.anime.findMany({
                          where :{
                               title :{
-                                   startsWith :`%${res?.title}%`
+                                   startsWith :`%${res?.title.replace(/[0-9]/g, '')}%`
                               } ,
                               NOT :[
                                    {
