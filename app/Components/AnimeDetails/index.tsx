@@ -246,13 +246,14 @@ const index = (props : PageProps) => {
        
           
      </Swiper>
+    
      {
-      data?.relevant && (
+      data?.nextSeason ? (
         <>
             <Container >
      <LinetitleContainer>
           <Line/>
-          <Jumpitle>قد يعجبك</Jumpitle>
+          <Jumpitle>مواسم اخرى</Jumpitle>
      </LinetitleContainer>
 
     </Container>
@@ -279,6 +280,38 @@ const index = (props : PageProps) => {
           
      </Swiper>
         </>
+      ) : (
+        <>
+        <Container >
+ <LinetitleContainer>
+      <Line/>
+      <Jumpitle>قد يعجبك</Jumpitle>
+ </LinetitleContainer>
+
+</Container>
+
+<Swiper 
+  spaceBetween={50}
+  slidesPerView={6}
+ breakpoints={breakpoints2}
+ style={{paddingRight:"30px",paddingLeft:"40px"}}
+ className='my-swiper'
+ dir='ltr'
+ >
+ 
+      {
+        data?.relevant?.map((el : any) => (
+          <SwiperSlide>
+            <AnimeCard data={{id:el?.id,imageUrl:el?.imageUrl,rating:el?.rating,status:el?.status,title:el?.title,type:el?.type}} />
+          </SwiperSlide>
+        ))
+      }
+
+  
+   
+      
+ </Swiper>
+    </> 
       )
      }
  

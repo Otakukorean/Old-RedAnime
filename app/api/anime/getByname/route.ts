@@ -57,9 +57,23 @@ export async function GET(req : NextRequest , res : NextResponse ){
                          } ,
                          take: 15
                     })
+                    const getNextSeason = await client.anime.findMany({
+                         where :{
+                              title :{
+                                   contains :`%${res?.title}%`
+                              },
+                              
+                              NOT :[
+                                   {
+                                        id : res?.id
+                                   }
+                              ]
+                         }
+                    })
                     return {
                          anime : res ,
-                         relevant : getrelevent 
+                         relevant : getrelevent ,
+                         nextSeason : getNextSeason
                     }
                })
                return NextResponse.json(firstResult)
@@ -119,9 +133,22 @@ export async function GET(req : NextRequest , res : NextResponse ){
                          } ,
                          take: 15
                     })
+                    const getNextSeason = await client.anime.findMany({
+                         where :{
+                              title :{
+                                   contains :`%${res?.title}%`
+                              } ,
+                              NOT :[
+                                   {
+                                        id : res?.id
+                                   }
+                              ]
+                         }
+                    })
                     return {
                          anime : res ,
-                         relevant : getrelevent 
+                         relevant : getrelevent ,
+                         nextSeason : getNextSeason
                     }
                })
               return NextResponse.json(result)
