@@ -248,7 +248,7 @@ const index = (props : PageProps) => {
      </Swiper>
     
      {
-      data?.nextSeason ? (
+      data?.nextSeason && (
         <>
             <Container >
      <LinetitleContainer>
@@ -280,7 +280,10 @@ const index = (props : PageProps) => {
           
      </Swiper>
         </>
-      ) : (
+      ) 
+     }
+     {
+      data?.relevant && !data?.nextSeason (
         <>
         <Container >
  <LinetitleContainer>
