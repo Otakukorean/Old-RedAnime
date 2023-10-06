@@ -9,7 +9,7 @@ import { useUser } from '@clerk/nextjs'
 import { redirect } from 'next/navigation'
 
 const page = () => {
-     const {isLoading,isError,data,error,isFetchingNextPage,fetchNextPage,hasNextPage , refetch,isFetching} = useInfiniteQuery(['animes'] , async({pageParam = 0}) => {
+     const {isLoading,isError,data,error,isFetchingNextPage,fetchNextPage,hasNextPage , refetch,isFetching} = useInfiniteQuery(['history'] , async({pageParam = 0}) => {
           const res= await fetch(`/api/history/Get?page=${pageParam}`)
           return res.json()
         } , {

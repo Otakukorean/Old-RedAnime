@@ -12,7 +12,7 @@ import { redirect } from 'next/navigation'
 // (p1, p2) => (p1.price < p2.price) ? 1 : (p1.price > p2.price) ? -1 : 0);
 
 const page = () => {
-     const {isLoading,isError,data,error,isFetchingNextPage,fetchNextPage,hasNextPage , refetch,isFetching} = useInfiniteQuery(['animes'] , async({pageParam = 0}) => {
+     const {isLoading,isError,data,error,isFetchingNextPage,fetchNextPage,hasNextPage , refetch,isFetching} = useInfiniteQuery(['watchLater'] , async({pageParam = 0}) => {
           const res= await fetch(`/api/WatchLater/Get?page=${pageParam}`)
           return res.json()
         } , {

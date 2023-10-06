@@ -8,7 +8,7 @@ import Card from '@/app/Components/Cards/AnimeCard'
 import { useUser } from '@clerk/nextjs'
 import { redirect } from 'next/navigation'
 const page = () => {
-     const {isLoading,isError,data,error,isFetchingNextPage,fetchNextPage,hasNextPage , refetch,isFetching} = useInfiniteQuery(['animes'] , async({pageParam = 0}) => {
+     const {isLoading,isError,data,error,isFetchingNextPage,fetchNextPage,hasNextPage , refetch,isFetching} = useInfiniteQuery(['favourite'] , async({pageParam = 0}) => {
           const res= await fetch(`/api/favourite/Get?page=${pageParam}`)
           return res.json()
         } , {
