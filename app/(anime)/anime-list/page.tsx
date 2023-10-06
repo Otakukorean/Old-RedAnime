@@ -269,7 +269,7 @@ const page = () => {
             {
                 
                 page.result?.result?.map((el : any,key : any) => (
-                  <Card key={key} data={{title : el?.anime?.title,type : el?.anime?.type,id : el?.anime?.id,imageUrl:el?.anime?.imageUrl , rating:el?.anime?.rating,season:el?.season, year:el?.year,status:el?.status,description:el?.description}}/>
+                  <Card key={key} data={{title : el?.title,type : el?.type,id : el?.id,imageUrl:el?.imageUrl , rating:el?.rating,season:el?.season, year:el?.year,status:el?.status,description:el?.description}}/>
                 ))
                 
             }

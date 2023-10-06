@@ -51,7 +51,7 @@ const page = (props : PageProps) => {
           <React.Fragment key={page.nextId ?? 'latPage'}>
             {
                 page.result?.result?.map((el : any,key : any) => (
-                  <Card key={key} data={{title : el.title,type : el.type,id : el.id,imageUrl:el.imageUrl , rating:el.rating,season:el?.season, year:el?.year,isLoading:isLoading,status:el?.status,description:el?.description}}/>
+                  <Card key={key} data={{title : el?.title,type : el?.type,id : el?.id,imageUrl:el?.imageUrl , rating:el?.rating,season:el?.season, year:el?.year,status:el?.status,description:el?.description}}/>
                 ))
                 
             }
