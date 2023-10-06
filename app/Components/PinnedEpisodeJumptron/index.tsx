@@ -1,3 +1,5 @@
+
+"use client"
 import React from 'react'
 import AnimeCard from '../Cards/AnimeCard'
 import {CardContainer,Container,Line,Jumpitle,LinetitleContainer} from '../AnimeJumptron/Style'
