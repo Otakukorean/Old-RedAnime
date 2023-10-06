@@ -7,11 +7,12 @@ import { useInfiniteQuery } from '@tanstack/react-query'
 import Card from '@/app/Components/Cards/EpisodeCard/index'
 import { useUser } from '@clerk/nextjs'
 import { redirect } from 'next/navigation'
+import axios from 'axios'
 
 const page = () => {
      const {isLoading,isError,data,error,isFetchingNextPage,fetchNextPage,hasNextPage , refetch,isFetching} = useInfiniteQuery(['history'] , async({pageParam = 0}) => {
-          const res= await fetch(`/api/history/Get?page=${pageParam}`)
-          return res.json()
+          const res= await axios.get(`https://redanime.net/api/history/Get?page=${pageParam}`)
+          return res.data
         } , {
           getNextPageParam : (lastPage, pages) => lastPage.hasNextPage && lastPage.nextPage
         })
@@ -25,9 +26,7 @@ const page = () => {
         if(!isSignedIn) {
           redirect('/sign-in')
           }
-        if(isLoading || isFetching) {
-          return <span>Loading ...</span>
-        }
+   
   return (
      <>
      <title>سجل المشاهدة</title>
@@ -38,22 +37,25 @@ const page = () => {
      </LinetitleContainer>
 
     </Container>
-    <CardContainer>
+  
     {
         data && data.pages.map((page) => (
           <React.Fragment key={page.nextId ?? 'latPage'}>
+              <CardContainer>
             {
                 page.result?.result?.map((el : any,key : any) => (
+
                   <Card key={key} epname={el?.episode?.EpName} epNumber={el?.episode?.EpNumber} AnimeName={el?.episode?.anime?.title} animeId={el?.episode?.anime?.id} imageSrc={el?.episode?.anime?.imageUrl} showanimeName  />
                 ))
                 
             }
+            </CardContainer>
             <span ref={ref}  style={{visibility:"hidden"}}>load more</span>
        
           </React.Fragment>
         ))
       }
-    </CardContainer>
+
 
     </>
   )
