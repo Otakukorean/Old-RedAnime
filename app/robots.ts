@@ -7,6 +7,6 @@ export default function robots() : MetadataRoute.Robots {
                allow : ['/','/anime/:name','/anime-list','/tags/:tagname','/watch/:name/:epname','/popular'] ,
                disallow : ['/history' , '/favourite' , '/watch-later']
           } ,
-          sitemap : 'https://redanime.net/sitemap.xml'
+          sitemap : 'https://animeninja.org/sitemap.xml'
      }
 }
