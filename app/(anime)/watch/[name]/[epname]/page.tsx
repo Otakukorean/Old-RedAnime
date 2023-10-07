@@ -17,11 +17,11 @@ export async function generateMetadata(
     title: `${decodeURI(params.name) + ' ' + decodeURI(params.epname)} `,
     openGraph : {
       title : `${decodeURI(params.name) + ' ' + decodeURI(params.epname)}`,
-      url : `https://redanime.net/watch/${decodeURI(params.name)}/${decodeURI(params.epname)}`,
+      url : `https://animeninja.org/watch/${decodeURI(params.name)}/${decodeURI(params.epname)}`,
       type : 'website' ,
       locale : 'ar_AR' ,
-      siteName : 'RedAnime - لمشاهدة الانمي المترجم' ,
-      description :'RedAnime - لمشاهدة الانمي المترجم' ,
+      siteName : 'AnimeNinja - لمشاهدة الانمي المترجم' ,
+      description :'AnimeNinja - لمشاهدة الانمي المترجم' ,
   
     } ,
   }

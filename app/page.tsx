@@ -9,14 +9,14 @@ import { Metadata } from "next/types"
 
 
 export const metadata: Metadata = {
-  title: 'RedAnime - لمشاهدة الانمي المترجم',
+  title: 'AnimeNinja - لمشاهدة الانمي المترجم',
   openGraph : {
-    title : 'RedAnime - لمشاهدة الانمي المترجم' ,
-    url : 'https://redanime.net' ,
+    title : 'AnimeNinja - لمشاهدة الانمي المترجم' ,
+    url : 'https://animeninja.org' ,
     type : 'website' ,
     locale : 'ar_AR' ,
-    siteName : 'RedAnime - لمشاهدة الانمي المترجم' ,
-    description :'RedAnime - لمشاهدة الانمي المترجم' ,
+    siteName : 'AnimeNinja - لمشاهدة الانمي المترجم' ,
+    description :'AnimeNinja - لمشاهدة الانمي المترجم' ,
 
   } ,
   description : 'RedAnime - لمشاهدة الانمي المترجم اون لاين' , 
